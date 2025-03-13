@@ -1,0 +1,21 @@
+.main{
+    display: flex;
+    align-items: center;
+    font-size: .7rem;
+    padding: 0 0 0 .8rem;
+    & label{
+        width: 100px;
+        border-bottom: 1px solid #ccc;
+        padding: 5px;
+    }
+    & div{
+        & input{
+            border: 1px solid #ccc;
+            padding: .2rem;
+            font-size: .8rem;
+            width: 100%;
+            /* border-bottom: 1px solid #1A74FA; */
+            outline: 0;
+        }
+    }
+}

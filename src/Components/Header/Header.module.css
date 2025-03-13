@@ -1,0 +1,55 @@
+
+.logout_btn{
+    display: flex;
+    justify-content: flex-start;
+}
+.combo_value:hover{
+    cursor: pointer;
+}
+.logout_btn:hover{
+    cursor: pointer;
+}
+
+.mnuicon:hover{
+    cursor: pointer;
+    color:#2a537a ;
+    background-color: white;
+}
+.mnuicon{
+    color: white;
+}
+.profile{
+    font-size: 15px;
+    color: white;
+}
+.profile:hover{
+    cursor: pointer;
+    background-color:white ;
+    color: #2a537a;
+}
+
+.logo{
+    
+    & h2{
+        font-size: 0.5em;
+        margin: 0;
+    }
+}
+
+.combo{
+  font-size: 13px;
+    outline: 0;
+    width: 200px;
+    max-width: 100px;
+   
+}
+
+
+.mnuicon{
+font-size: 15px;
+}
+
+.scrolled{
+    background-color:white;
+    z-index: 1;
+}

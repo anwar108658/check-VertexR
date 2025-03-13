@@ -1,0 +1,18 @@
+.iconBar{
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    font-size: .8rem;
+    gap: 7px;
+    padding: 3px 1rem;
+    border-bottom: 1px solid #ccc;
+    & button{
+        background: transparent;
+        border: none;
+        color: rgb(255, 255, 255);
+    }
+}
+
+.dateColor {
+    color: rgb(255, 255, 255);
+}

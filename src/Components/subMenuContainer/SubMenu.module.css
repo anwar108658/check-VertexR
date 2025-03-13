@@ -1,0 +1,32 @@
+.main{
+    gap: 15px;
+    width: 100%;
+    max-width: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    font-size: .7rem;
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover{
+        transition: all .4s ease-in-out;
+        background-color: #f0f0f0;
+    }
+    & p{
+        word-wrap: break-word;
+    }
+    & div{
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        align-items: end;
+        & p{
+            word-wrap: break-word;
+        }
+    }
+}
+.heading{
+    font-size: .9rem;
+}

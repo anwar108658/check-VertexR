@@ -1,0 +1,75 @@
+.main{
+    background-color: #fafafa;
+}
+.iconBar{
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    font-size: .8rem;
+    gap: 7px;
+    padding: 3px 1rem;
+    border-bottom: 1px solid #ccc;
+    & button{
+        background: transparent;
+        border: none;
+        color: #2a537a;
+    }
+}
+.filterBar{
+    color: #2a537a;
+    display: flex;
+    justify-content: space-between;
+    font-size: .7rem;
+    padding: 3px 5px;
+    border-bottom: 1px solid #ccc;
+    & .nestedFilter{
+        display: flex;
+        gap: 5px;
+        & div{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 0 5px;
+            /* border-right: 1px solid #ccc; */
+            border-left: 1px solid #ccc;
+            &:hover{
+                background-color: #eee;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.table{
+    width: 100%;
+    font-size: .7rem;
+    & .thead{
+        & tr{
+            background-color: #F6F7F9;
+            & td{
+                padding: 7px 3px;
+                white-space: nowrap;
+            }
+        }
+    }
+    & .tbody{
+        & tr{
+            & td{
+                padding: 5px 3px;
+                white-space: nowrap;
+                
+            }
+            &:hover{
+                background-color: #F6F7F9;
+                cursor: pointer;
+            }
+        }
+    }
+}
+p{
+    margin: 0 !important;
+}
+
+.fieldName {
+    line-height: 22px;
+    font-family: sans-serif;
+}

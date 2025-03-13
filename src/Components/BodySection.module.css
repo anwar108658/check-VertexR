@@ -1,0 +1,49 @@
+.close {
+    position: fixed;
+    transform: translateX(-100%); /* Move it off-screen to the right */
+    display: none;
+}
+
+.open{
+    position: fixed;
+    height: 100vh;
+    transform: translateX(0);
+}
+.bgdiv {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: rgb(77,103,124); */
+    /* background: linear-gradient(170deg, rgba(77,103,124,1) 0%, rgba(109,137,160,1) 41%, rgba(141,172,199,1) 100%); */
+    background: rgba(0, 0, 0, 0.9) url( '../assets/bg.png');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed; 
+    background-repeat: repeat;
+    z-index: -1; 
+    height: 100vh; 
+    
+  }
+  
+  .header {
+    position: fixed; 
+    width: 100%;
+    z-index: 1; 
+  }
+  
+  .imgdiv {
+    overflow-y: auto;
+    height: 100vh; 
+  }
+  
+  .container {
+    padding-top: 10px; 
+  }
+
+  .tabdiv{
+    position: fixed;
+    width: 100%;
+    
+  }
