@@ -13,6 +13,8 @@ import DataGrid, {
   Search,
   FilterRow,
   FilterPanel,
+  ColumnChooser,
+  Position,
 } from "devextreme-react/data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { setDataIsFetched } from "../Redux/Tabs";
@@ -93,6 +95,13 @@ const GridForm = ({ dataObject, reportData }) => {
             >
               <Scrolling mode="virtual" rowRenderingMode="virtual" />
               <Paging defaultPageSize={10} />
+              <ColumnChooser
+              enabled={true} 
+              allowSearch={true}
+              mode="select"
+              height="340px"
+              >
+              </ColumnChooser>
               <FilterRow visible={true} />
                <FilterPanel visible={true} />
               <HeaderFilter visible={true}>

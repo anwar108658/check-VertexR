@@ -24,7 +24,9 @@ const GroupOpen = ({name,children,type}) => {
           </div>
         </div>
     </div>
-    {isShow && <div>{children}</div>}
+      <div style={{ display: isShow ? "block" : "none" }}>
+        {children}
+      </div>
     </>
   )
 }
