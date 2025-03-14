@@ -73,3 +73,19 @@ p{
     line-height: 22px;
     font-family: sans-serif;
 }
+.dx-datagrid-borders>.dx-datagrid-filter-panel {
+    background-color: #fff;
+}
+.dx-menu-base {
+    font-size: .7rem !important;
+    &:hover{
+        box-shadow: 2px 2px 10px 2px #ccc;
+    }
+}
+.dx-texteditor-input {
+    background-color: #eee !important;
+}
+.dx-datagrid-content .dx-datagrid-table [class*=column]+[class*=column]:last-child {
+    float: none;
+    background-color: #eee !important;
+}

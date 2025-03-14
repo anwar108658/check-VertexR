@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import style from "./GridForm.module.css";
+import "./GridForm.css";
 import FieldInput from "../FieldsInput/FieldInput";
 import GroupOpen from "../SubGroupOpen/IsSubGroupOpen";
 import ViewBar from "../ViewBar/ViewBar";
@@ -11,6 +11,8 @@ import DataGrid, {
   Paging,
   HeaderFilter,
   Search,
+  FilterRow,
+  FilterPanel,
 } from "devextreme-react/data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { setDataIsFetched } from "../Redux/Tabs";
@@ -18,7 +20,7 @@ import * as AspNetData from "devextreme-aspnet-data-nojquery";
 
 const userData = JSON.parse(sessionStorage.getItem("userData"));
 
-const dataSource = useMemo(() => AspNetData.createStore({
+const dataSource = AspNetData.createStore({
     loadUrl: "http://ahmed.itserver.biz:5016/api/report/LoadReport/daily_stock_position",
     loadMethod: "POST",
     onBeforeSend: (operation, ajaxSettings) => {
@@ -27,7 +29,7 @@ const dataSource = useMemo(() => AspNetData.createStore({
         Authorization: `Bearer ${userData.authToken}`,
       };
     },
-  }), []);
+  });
 
 const GridForm = ({ dataObject, reportData }) => {
   const [data, setData] = useState({});
@@ -51,6 +53,7 @@ const GridForm = ({ dataObject, reportData }) => {
 
   const dataGridRef = useRef(null);
   console.log(reportdata);
+  
   return (
     <>
       <div className="pt-5">
@@ -81,15 +84,17 @@ const GridForm = ({ dataObject, reportData }) => {
 
           <GroupOpen type="grid" name={data.data.reportName}>
             <DataGrid
-              dataSource={dataSource}
+              dataSource={reportdata}
               showBorders={true}
               columnAutoWidth={true}
-              height={500}
-              style={{fontSize: ".8rem"}}
+              height={450}
+              style={{fontSize: ".7rem"}}
               remoteOperations={{ filtering: false, paging: true }}
             >
               <Scrolling mode="virtual" rowRenderingMode="virtual" />
               <Paging defaultPageSize={10} />
+              <FilterRow visible={true} />
+               <FilterPanel visible={true} />
               <HeaderFilter visible={true}>
                 <Search enabled={true} />
               </HeaderFilter>

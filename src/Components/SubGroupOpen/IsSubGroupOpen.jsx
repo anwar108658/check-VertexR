@@ -1,12 +1,11 @@
 import { ArrowDropDownCircle, ArrowUpwardRounded } from '@mui/icons-material'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Fullscreen, Square, GridView} from '@mui/icons-material';
 import { RxExitFullScreen } from 'react-icons/rx';
 import style from './GroupOpen.module.css'
 
 const GroupOpen = ({name,children,type}) => {
   const[isShow,setIsShow] = useState(true)
- 
   return (
     <>
     <div className={style.group} style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
