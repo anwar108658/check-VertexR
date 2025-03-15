@@ -108,7 +108,7 @@ export default function BodySection() {
           <Header />
         </div>
         <div className='d-flex justify-content-between pt-5'>
-          <div className={`${showmenu ? 'col-2' : 'col-0'}`}>
+          <div className={`${showmenu ? 'col-2' : 'col-0'} bg-white`}>
             <Menu />
           </div>
 

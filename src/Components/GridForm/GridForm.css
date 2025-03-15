@@ -89,3 +89,30 @@ p{
     float: none;
     background-color: #eee !important;
 }
+
+
+.dx-datagrid-column-chooser .dx-overlay-content {
+    width: 250px;
+    height: 340px;
+    z-index: 1501;
+    left: 0;
+    top: 0;
+    transform: none; /* Remove the transform */
+    transition: none;
+    opacity: 1;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    pointer-events: auto;
+}
+.dx-overlay-wrapper *{
+    font-size: .8rem !important;
+}
+
+.dx-datagrid-rowsview .dx-row {
+    &:hover {
+        background-color: #7b9dbe23;
+        cursor: pointer;
+    }
+}

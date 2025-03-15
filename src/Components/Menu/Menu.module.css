@@ -23,8 +23,8 @@
 
 .main {
     transition: transform 0.7s ease;
-  background-color:#fafafa;
-  z-index: 10;
+    background-color:#fafafa;
+    z-index: 10;
 }
 .search_inpt input {
     border: none;
