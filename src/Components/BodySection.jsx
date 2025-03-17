@@ -19,13 +19,17 @@ export default function BodySection() {
   const isAuthenticated = userData && userData.userId && userData.authToken;
   const showmenu = useSelector((state) => state.showmenu.value);
   const navigate = useNavigate();
-  const [element, setElement] = useState(null);
   const tabsData = useSelector((state) => state.tabs);
   const dispatch = useDispatch();
   const location = useLocation().pathname.split('/')[1];
   const [reportData, setReportData] = useState({});
-
-
+  
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, []);
+  
   useEffect(() => {
     const checkScreenWidth = () => {
       if (window.innerWidth < 1310) {
@@ -34,7 +38,6 @@ export default function BodySection() {
         dispatch(setShowMenu(true));
       }
     };
-
     checkScreenWidth();
     window.addEventListener('resize', checkScreenWidth);
     return () => {
@@ -42,64 +45,6 @@ export default function BodySection() {
     };
   }, []);
 
-  useEffect(() => {
-    if (tabsData.activeTab != null) {
-      const obj = {
-        'G': <GridForm dataObject={tabsData.activeTab} reportData={reportData[tabsData.activeTab.id]} />,
-        'P': <PivotGrid dataObject={tabsData.activeTab} reportData={reportData[tabsData.activeTab.id]} />,
-      };
-
-      const reportType = tabsData.activeTab?.data?.data?.reportType;
-
-      if (obj[reportType]) {
-        setElement(obj[reportType]);
-      } else {
-        setElement(null);
-      }
-    }
-  }, [tabsData.activeTab, reportData]);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login');
-    }
-  }, []);
-
-  useEffect(() => {
-    if (tabsData.activeTab != null) {
-      const activeTabId = tabsData.activeTab.id;
-      // Check if we already have data for this tab
-      if (!reportData[activeTabId]) {
-        // If no data for this tab, fetch it
-        const reportId = tabsData.activeTab.data.data.reportId;
-        console.log(reportId);
-
-        const getReportData = async () => {
-          try {
-            const response = await fetch(`${baseurl}report/LoadReport/${reportId}`, {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${userData.authToken}`,
-                'Content-Type': 'application/json',
-              },
-            });
-            const final = await response.json();
-
-            // Store data specific to the active tab
-            setReportData((prevData) => ({
-              ...prevData,
-              [activeTabId]: final, // Save data by tab ID
-            }));
-          
-          } catch (error) {
-            console.log(error);
-          }
-        };
-
-        getReportData();
-      }
-    }
-  }, [tabsData.activeTab, reportData]); // Re-fetch if active tab changes
 
   return (
     <div className='position-relative'>
@@ -115,22 +60,33 @@ export default function BodySection() {
           <div className={`${style.imgdiv} ${showmenu ? 'col-10' : 'col-12'} px-2`}>
             <div className="">
               {location !== 'menus' && tabsData.tabs.length !== 0 && (
-                <div className={`${style.tabdiv} col-9`}>
+                <div className={`${style.tabdiv} col-9 z-1`}>
                   <TabSection />
                 </div>
               )}
 
-              <motion.div
-                className="table-container"
-                initial={{ x: '100%' }}
-                key={tabsData.activeTab != null && tabsData.activeTab.id ? tabsData.activeTab.id : 'default'}
-                animate={{ x: 0 }}
-                transition={{ duration: 0.7 }}
-              >
                 <div className='mb-5'>
-                  {location === 'menus' ? <SubMenuContainer /> : element}
+                  {location === 'menus' ? <SubMenuContainer /> : 
+                 <div>
+                 {tabsData?.tabs?.length !== 0 &&
+                   tabsData?.tabs.map((item, i) => (
+                    <div
+                    className="animated-tab"
+                    style={{
+                      transform: item.id === tabsData.activeTab.id ? "translateX(0)" : "translateX(100%)",
+                      transition: "transform 0.7s linear",
+                      position: item.id === tabsData.activeTab.id ? "relative" : "absolute",
+                      width: "100%",
+                    }}
+                  >
+                    {<GridForm key={i} dataObject={item} />}
+                  </div>
+                  
+                   ))}
+               </div>
+                  }
                 </div>
-              </motion.div>
+              
             </div>
           </div>
         </div>

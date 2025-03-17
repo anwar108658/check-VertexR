@@ -44,7 +44,7 @@ const SubMenuContainer = ({ name, head }) => {
             name: tabname,
             id: generateUniqueId()
           }
-         
+         console.log(obj,"obj");
           dispatch(setTabs(obj));
           dispatch(setDataIsFetched(false))
           navigate(`/form/${tabname}`)

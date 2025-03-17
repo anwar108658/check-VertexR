@@ -9,7 +9,7 @@ export default function App() {
   
   return (
     <>
-    { !dataIsFetched && <Spinner/>}
+    {/* { !dataIsFetched && <Spinner/>} */}
     <BodySection/>
     </>
   );

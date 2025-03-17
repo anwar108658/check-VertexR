@@ -24,23 +24,24 @@ import * as AspNetData from "devextreme-aspnet-data-nojquery";
 
 const userData = JSON.parse(sessionStorage.getItem("userData"));
 
-const dataSource = AspNetData.createStore({
-    loadUrl: "http://ahmed.itserver.biz:5016/api/report/LoadReport/daily_stock_position",
-    loadMethod: "POST",
-    onBeforeSend: (operation, ajaxSettings) => {
-      ajaxSettings.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userData.authToken}`,
-      };
-    },
-  });
 
-const GridForm = ({ dataObject, reportData }) => {
+const GridForm = ({ dataObject, reportData,className}) => {
   const menu = useSelector((state) => state.showmenu)
   const [data, setData] = useState({});
   const [reportdata, setreportData] = useState([]);
   const dispatch = useDispatch();
 
+  const dataSource = AspNetData.createStore({
+      loadUrl: `http://ahmed.itserver.biz:5016/api/report/LoadReport/${dataObject?.data?.data?.reportId}`,
+      loadMethod: "POST",
+      onBeforeSend: (operation, ajaxSettings) => {
+        ajaxSettings.headers = {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userData.authToken}`,
+        };
+      },
+    });
+    
   useEffect(() => {
     if (reportData) {
       if (reportData.data.length != 0) {
@@ -57,17 +58,16 @@ const GridForm = ({ dataObject, reportData }) => {
   }, [dataObject]);
 
   const dataGridRef = useRef(null);
-  console.log(reportdata);
+
   
   return (
-    <>
+    <div className={className}>
       <div className="pt-5">
         <ViewBar />
       </div>
       {Object.keys(data).length != 0 && (
         <div id={dataObject.id}>
           {/* ----------------------------- Parameter fields ---------------- */}
-
           {data.data.reportParams.length != 0 && (
             <GroupOpen name="Criteria">
               <div className="mb-3">
@@ -89,7 +89,7 @@ const GridForm = ({ dataObject, reportData }) => {
 
           <GroupOpen type="grid" name={data.data.reportName}>
             <DataGrid
-              dataSource={reportdata}
+              dataSource={dataSource}
               showBorders={true}
               columnAutoWidth={true}
               height="100vh"
@@ -118,7 +118,7 @@ const GridForm = ({ dataObject, reportData }) => {
           </GroupOpen>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
