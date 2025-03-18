@@ -22,7 +22,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDataIsFetched } from "../Redux/Tabs";
 import * as AspNetData from "devextreme-aspnet-data-nojquery";
 
-const userData = JSON.parse(sessionStorage.getItem("userData"));
 
 
 const GridForm = ({ dataObject, reportData,className}) => {
@@ -30,6 +29,8 @@ const GridForm = ({ dataObject, reportData,className}) => {
   const [data, setData] = useState({});
   const [reportdata, setreportData] = useState([]);
   const dispatch = useDispatch();
+  
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
 
   const dataSource = AspNetData.createStore({
       loadUrl: `http://ahmed.itserver.biz:5016/api/report/LoadReport/${dataObject?.data?.data?.reportId}`,
@@ -59,12 +60,15 @@ const GridForm = ({ dataObject, reportData,className}) => {
 
   const dataGridRef = useRef(null);
 
-  
+  console.log(dataObject)
   return (
     <div className={className}>
       <div className="pt-5">
         <ViewBar />
       </div>
+
+{/* for field  */}
+
       {Object.keys(data).length != 0 && (
         <div id={dataObject.id}>
           {/* ----------------------------- Parameter fields ---------------- */}
@@ -86,6 +90,8 @@ const GridForm = ({ dataObject, reportData,className}) => {
               </div>
             </GroupOpen>
           )}
+
+{/* grid  */}
 
           <GroupOpen type="grid" name={data.data.reportName}>
             <DataGrid
