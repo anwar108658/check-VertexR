@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setDataIsFetched } from "../Redux/Tabs";
 import * as AspNetData from "devextreme-aspnet-data-nojquery";
 import { Add, Close, Download, Replay, RotateLeft, Save, CachedSharp, Visibility } from '@mui/icons-material';
+import { Fullscreen, Square, GridView} from '@mui/icons-material';
+import { RxExitFullScreen } from 'react-icons/rx';
 import style from "./ViewBar.module.css";
 import DataGrid, {
   Scrolling,
@@ -31,6 +33,7 @@ const button = [
 ];
 
 const GridForm = ({ dataObject, reportData, className }) => {
+  const[isShow,setIsShow] = useState(true)
   const menu = useSelector((state) => state.showmenu);
   const [data, setData] = useState({});
   const [reportdata, setreportData] = useState([]);
@@ -104,7 +107,13 @@ const GridForm = ({ dataObject, reportData, className }) => {
             </GroupOpen>
           )}
 
-          <GroupOpen type="grid" name={data.data.reportName}>
+          <GroupOpen name={data.data.reportName} secondChildren={
+            <div className={style.nestedFilter}>
+                <div><Fullscreen fontSize='small'/></div>
+                <div onClick={() => setIsShow(prev => !prev)} style={{display:"flex",flexDirection:isShow?"row-reverse":"row"}}><Square fontSize='small' sx={{fontSize:"1rem",color:isShow?"#3A5E80":"#ccc"}}/><p>{isShow?"Filter Off":"Filter On"}</p></div>
+            </div>
+            }
+            >
             <DataGrid
               dataSource={dataSource} // Use the updated dataSource
               showBorders={true}
@@ -126,7 +135,7 @@ const GridForm = ({ dataObject, reportData, className }) => {
                 <ColumnChooserSearch enabled={true} placeholder="Search column" />
                 <ColumnChooserSelection allowSelectAll={true} selectByClick={true} recursive={true} />
               </ColumnChooser>
-              <FilterRow visible={menu.filterToggle} />
+              <FilterRow visible={isShow} />
               <FilterPanel visible={true} />
               <HeaderFilter visible={true}>
                 <Search enabled={true} />
