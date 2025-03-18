@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router';
 const baseurl = import.meta.env.VITE_BASE_URL;
 
 
-const SubMenuContainer = ({ name, head }) => {
+const SubMenuContainer = ({ className ,head}) => {
   const usefullinks = useSelector((state) => state.usefulLinks.links);
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -59,7 +59,7 @@ const SubMenuContainer = ({ name, head }) => {
 
 
   return (
-    <div className=' pb-5'>
+    <div className={`pb-5 ${className}`}>
       {usefullinks != null &&
 
         <div  className=''>

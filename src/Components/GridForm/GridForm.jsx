@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState, useRef, useCallback } from "react";
 import "./GridForm.css";
 import FieldInput from "../FieldsInput/FieldInput";
 import GroupOpen from "../SubGroupOpen/IsSubGroupOpen";
@@ -54,8 +54,8 @@ const GridForm = ({ dataObject, reportData, className }) => {
         };
       },
     });
-  }, [renderKey]); // Dependencies
-
+  }, [renderKey, dataObject?.data?.data?.reportId]); // Dependencies
+// const dataSource = dataSourceFunc()
   useEffect(() => {
     if (reportData) {
       if (reportData.data.length !== 0) {

@@ -46,6 +46,11 @@ export default function BodySection() {
   }, []);
 
 
+  useEffect(() => {
+    setReportData(tabsData.tabs)
+  }, [])
+  
+
   return (
     <div className='position-relative'>
       <div className={style.bgdiv}>
@@ -66,7 +71,7 @@ export default function BodySection() {
               )}
 
                 <div className='mb-5'>
-                  {location === 'menus' ? <SubMenuContainer /> : 
+                  <SubMenuContainer className={location === "menus" ? "d-block":"d-none"} />  
                  <div>
                  {tabsData?.tabs?.length !== 0 &&
                    tabsData?.tabs.map((item, i) => (
@@ -77,6 +82,7 @@ export default function BodySection() {
                       transition: "transform 0.7s linear",
                       position: item.id === tabsData.activeTab.id ? "relative" : "absolute",
                       width: "100%",
+                      display:location === "menus" ? "none":"block",
                     }}
                   >
                     {<GridForm key={i} dataObject={item} />}
@@ -84,7 +90,7 @@ export default function BodySection() {
                   
                    ))}
                </div>
-                  }
+                  
                 </div>
               
             </div>
