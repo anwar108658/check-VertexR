@@ -1,15 +1,21 @@
 .iconBar{
     display: flex;
     align-items: center;
-    gap: 1px;
     font-size: .8rem;
-    gap: 7px;
-    padding: 3px 1rem;
+    padding: 3px .8rem;
     border-bottom: 1px solid #ccc;
     & button{
         background: transparent;
         border: none;
+        padding: 1px 4px;
+        border-radius: 5px;
         color: rgb(255, 255, 255);
+        &:hover{
+            transition: all 0.3s linear;
+            background-color: #ccc;
+            cursor: pointer;
+            color: #3A5E80;
+        }
     }
 }
 

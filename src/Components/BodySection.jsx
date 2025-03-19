@@ -92,7 +92,6 @@ export default function BodySection() {
                </div>
                   
                 </div>
-              
             </div>
           </div>
         </div>
